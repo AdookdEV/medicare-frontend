@@ -4,6 +4,8 @@ const TODAY_URL = "/today";
 const SUPPORT_URL = "/support";
 
 const KNOWLEDGE_URL = "/knowledge";
+const ARTICLE_URL = "/articles";
+const FAQ_URL = "/faq";
 
 const REGISTER_URL = "/auth/register";
 const LOGIN_URL = "/auth/login";
@@ -15,6 +17,8 @@ export {
     TODAY_URL,
     SUPPORT_URL,
     KNOWLEDGE_URL,
+    FAQ_URL,
+    ARTICLE_URL,
     REGISTER_URL,
     LOGIN_URL,
     FORGOT_PASS_URL,

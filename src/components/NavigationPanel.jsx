@@ -1,9 +1,10 @@
-import {Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Typography, Paper} from "@mui/material";
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Typography } from "@mui/material";
 import {
   Checklist as ChecklistIcon,
   QueryStats as StatisticsIcon,
   MedicalServices as FirstAidIcon,
   Medication as PillIcon,
+  Psychology as PsychologyIcon, // Иконка мозга
 } from "@mui/icons-material";
 
 import {
@@ -16,12 +17,10 @@ import {
 
 import { Link, useLocation } from "react-router";
 
-
 const NavigationPanel = () => {
   const location = useLocation();
 
   const isSelected = (path) => location.pathname === path;
-
 
   return (
       <Box
@@ -67,9 +66,9 @@ const NavigationPanel = () => {
 
           <ListItemButton component={Link} to={KNOWLEDGE_URL} selected={isSelected(KNOWLEDGE_URL)}>
             <ListItemIcon>
-              <PillIcon color={isSelected(KNOWLEDGE_URL) ? "primary" : "inherit"} />
+              <PsychologyIcon color={isSelected(KNOWLEDGE_URL) ? "primary" : "inherit"} /> {/* Иконка мозга */}
             </ListItemIcon>
-            <ListItemText primary="Treatment" />
+            <ListItemText primary="Knowledge Base" />
           </ListItemButton>
         </List>
       </Box>
