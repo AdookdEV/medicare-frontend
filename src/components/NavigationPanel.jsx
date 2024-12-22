@@ -10,7 +10,8 @@ import {
   STATISTICS_URL,
   TREATMENT_URL,
   TODAY_URL,
-  SUPPORT_URL
+  SUPPORT_URL,
+  KNOWLEDGE_URL
 } from "../api/url.js";
 
 import { Link, useLocation } from "react-router";
@@ -60,6 +61,13 @@ const NavigationPanel = () => {
           <ListItemButton component={Link} to={TREATMENT_URL} selected={isSelected(TREATMENT_URL)}>
             <ListItemIcon>
               <PillIcon color={isSelected(TREATMENT_URL) ? "primary" : "inherit"} />
+            </ListItemIcon>
+            <ListItemText primary="Treatment" />
+          </ListItemButton>
+
+          <ListItemButton component={Link} to={KNOWLEDGE_URL} selected={isSelected(KNOWLEDGE_URL)}>
+            <ListItemIcon>
+              <PillIcon color={isSelected(KNOWLEDGE_URL) ? "primary" : "inherit"} />
             </ListItemIcon>
             <ListItemText primary="Treatment" />
           </ListItemButton>

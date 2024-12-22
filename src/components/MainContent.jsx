@@ -4,6 +4,7 @@ import MedicineHistoryPage from "../pages/MedicineHistoryPage";
 import MedicineTodayPage from "../pages/MedicineTodayPage";
 import TreatmentPage from "../pages/TreatmentPage.jsx";
 import DoctorsNotesPage from "../pages/DoctorsNotesPage";
+import KnowledgePage from "../pages/KnowledgePage.jsx";
 
 
 const MainContent = () => {
@@ -14,6 +15,7 @@ const MainContent = () => {
         <Route path="/today" element={<MedicineTodayPage />} />
         <Route path="/treatment" element={<TreatmentPage />} />
         <Route path="/support" element={<DoctorsNotesPage />} />
+        <Route path="/knowledge" element={<KnowledgePage />} />
       </Routes>
     </Box>
   );
