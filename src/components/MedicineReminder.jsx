@@ -42,37 +42,37 @@ const MedicineReminder = ({onGenerateCron, existingSchedule = ""}) => {
         if (onGenerateCron) {
             onGenerateCron(generateCronFromTab2());
         }
-    }, [specificDaysOfWeek, time, dose, tabIndex]);
+    }, [specificDaysOfWeek, time, dose, tabIndex, availableUnits]);
 
     useEffect(() => {
         generateCronFromTab1()
         if (onGenerateCron) {
             onGenerateCron(generateCronFromTab1());
         }
-    }, [specificTimes, unitIndex, tabIndex]);
+    }, [specificTimes, unitIndex, tabIndex, availableUnits]);
 
     const generateCronFromTab1 = () => {
-        let scheduleData = specificTimes.map(entry => {
+        let entries = specificTimes.map(entry => {
             const cron = `${entry.time.minute()} ${entry.time.hour()} * * *`;
             return {cron, dose: entry.dose};
         });
         return {
             scheduleType: "MULTIPLE_TIMES_DAY",
             unitId: availableUnits[unitIndex]?.id,
-            scheduleData,
+            entries,
         }
     };
 
     const generateCronFromTab2 = () => {
-        let scheduleData = {
+        let entries = [{
             cron: `${time.minute()} ${time.hour()} * * ${specificDaysOfWeek.map(day => mapWeekDay[day]).join(',') || '*'}`,
             dose: dose,
-        }
+        }]
 
         return {
             scheduleType: "SPECIFIC_DAYS_WEEK",
-            unit_id: availableUnits[unitIndex]?.id,
-            scheduleData,
+            unitId: availableUnits[unitIndex]?.id,
+            entries,
         }
     };
 
