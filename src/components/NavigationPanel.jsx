@@ -4,7 +4,7 @@ import {
   QueryStats as StatisticsIcon,
   MedicalServices as FirstAidIcon,
   Medication as PillIcon,
-  Psychology as PsychologyIcon, // Иконка мозга
+  Psychology as PsychologyIcon,
 } from "@mui/icons-material";
 
 import {
@@ -31,9 +31,16 @@ const NavigationPanel = () => {
             p: 2,
           }}
       >
-        <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
-          Dashboard
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 3,marginLeft: "20px" }}>
+          <img
+              src="/assets/imagesForArticle/logo1.png"
+              alt="Health Care Logo"
+              style={{ width: "40px", height: "auto", marginRight: '5px' }}
+          />
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Health Care
+          </Typography>
+        </Box>
         <Divider />
         <List>
           <ListItemButton component={Link} to={TODAY_URL} selected={isSelected(TODAY_URL)}>
