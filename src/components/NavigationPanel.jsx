@@ -54,7 +54,7 @@ const NavigationPanel = () => {
             <ListItemIcon>
               <StatisticsIcon color={isSelected(STATISTICS_URL) ? "primary" : "inherit"} />
             </ListItemIcon>
-            <ListItemText primary="Statistics" />
+            <ListItemText primary="History" />
           </ListItemButton>
 
           <ListItemButton component={Link} to={SUPPORT_URL} selected={isSelected(SUPPORT_URL)}>

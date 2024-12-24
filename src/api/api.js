@@ -6,6 +6,7 @@ const API_LOGIN_URL = "/api/auth/login"
 const API_REGISTER_URL = "/api/auth/register"
 const API_MEDICATION_UNITS_URL = "/api/medication-units"
 const API_MEDICATION_REMIND_URL = "/api/medication-reminder"
+const API_SCHEDULE_DATA_URL = "/api/schedule-data"
 const API_BASE_URL = `${BASE_URL}/api`;
 
 
@@ -24,7 +25,7 @@ const callLoginApiRequest = (email, password) => {
         },
         body: JSON.stringify(body)
     }
-    return fetch(`${BASE_URL}${API_LOGIN_URL}`, params);
+        return fetch(`${BASE_URL}${API_LOGIN_URL}`, params);
 };
 
 
@@ -156,6 +157,97 @@ export const deleteAppointment = async (appointmentId) => {
     });
     if (!response.ok) throw new Error("Failed to delete appointment");
 };
+
+export const deleteScheduleData = (id) => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    }
+    return fetch(`${BASE_URL}${API_SCHEDULE_DATA_URL}/${id}`, params);
+}
+
+export const markMedicationTakenAPI = (medId) => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify({
+            state: 'taken',
+            medicationId: medId,
+            date: new Date().toISOString()
+        })
+    };
+    return fetch(`${BASE_URL}/api/medication-history`, params);
+};
+
+export const skipMedicationAPI = (medId) => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify({
+            state: 'skipped',
+            medicationId: medId,
+            date: new Date().toISOString()
+        })
+    };
+    return fetch(`${BASE_URL}/api/medication-history`, params);
+};
+
+export const skipAppointmentAPI = (medId, entryId) => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    };
+    return fetch(`${BASE_URL}${API_SCHEDULE_DATA_URL}/${entryId}`, params);
+};
+
+
+
+export const getMedicationRemindersToday = () => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    };
+
+    return fetch(`${BASE_URL}${API_MEDICATION_REMIND_URL}/today`, params);
+}
+
+export const getHistory = () => {
+    const token = localStorage.getItem('accessToken');
+    const params = {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    };
+    return fetch(`${BASE_URL}/api/medication-history`, params);
+}
 
 
 export {
